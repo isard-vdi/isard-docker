@@ -1,7 +1,7 @@
 version: '2'
 services:
     rethinkdb-container:
-        #restart: always
+        restart: always
         image: rethinkdb
         hostname: rethinkdb
         volumes:
@@ -14,10 +14,8 @@ services:
                 - rethinkdb
 
     isard-hypervisor:
-        #restart: always
+        restart: always
         image: isard/hypervisor
-        build:
-            context: dockers/hypervisor
         links:
             - "rethinkdb-container"
         hostname: isard-hypervisor
@@ -42,15 +40,14 @@ services:
         command: /usr/sbin/init
 
     isard-webapp:
-        #restart: always
+        restart: always
         image: isard/webapp
-        build:
-            context: dockers/webapp
         links:
             - "rethinkdb-container"
         hostname: isard-webapp
         volumes:
             - "viewerkeys:/isard/install/viewer-certs"
+            - "/isard/logs:/isard/logs"
         expose:
             - "5000"
         environment:
@@ -62,10 +59,8 @@ services:
         command: bash -c '/init.sh'
 
     isard-engine:
-        #restart: always
+        restart: always
         image: isard/engine
-        build:
-            context: dockers/engine
         links:
             - "rethinkdb-container"
             - "isard-hypervisor"
@@ -83,20 +78,18 @@ services:
                 - isard-engine
         command: bash -c '/init.sh'
 
-    nginx:
-        #restart: always
-        image: marvambass/nginx-ssl-secure
+    isard-nginx:
+        restart: always
+        image: isard-nginx
         ports:
             - "443:443"
-        volumes:
-            - "./dockers/nginx/:/etc/nginx/external"
-        hostname: nginx
+        hostname: isard-nginx
         links:
             - "isard-webapp:isard-webapp"
         networks:
             main:
                 aliases:
-                - nginx
+                - isard-nginx
 
 networks:
     main:
