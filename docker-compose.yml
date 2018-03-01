@@ -80,7 +80,7 @@ services:
 
     isard-nginx:
         restart: always
-        image: isard-nginx
+        image: isard/nginx
         ports:
             - "443:443"
         hostname: isard-nginx
