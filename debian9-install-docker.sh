@@ -1,4 +1,4 @@
-sudo apt-get install virt-viewer -y
+sudo apt-get install sudo virt-viewer -y
 sudo apt-get remove docker docker-engine docker.io -y
 
 sudo apt-get install \
