@@ -19,4 +19,5 @@ sudo curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-c
 sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 
-setenforce 0
+sudo setenforce 0
+sudo systemctl start docker
