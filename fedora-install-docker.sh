@@ -20,4 +20,5 @@ sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 
 sudo setenforce 0
+sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/selinux/config && cat /etc/selinux/config
 sudo systemctl start docker
