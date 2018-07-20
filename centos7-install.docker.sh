@@ -1,4 +1,4 @@
-sudo dnf -y install virt-viewer
+sudo yum -y install virt-viewer
 sudo yum remove docker \
                   docker-client \
                   docker-client-latest \
