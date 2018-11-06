@@ -12,11 +12,12 @@ In theory any distro that can run docker can be used. Some tips:
 
 | Distro | Versions | Status |
 | ------ | ------ | ------ |
-| Fedora | 25,26,27 | OK (recommended, we use it on production) |
-| Debian | 6,7 | OK  |
+| Fedora | 25,26,27,28 | OK (recommended, we use it on production) |
+| Debian | 6,7,8,9 | OK  |
 | Ubuntu | 16.04.3 LTS | OK  |
+| Alpine Linux* | 3.8.1 | OK (use alpine-linux.md)  |
 
-As we said, any other distro/version with docker should work.
+Any other distro/version with docker && docker-compose should work.
 
 ### 2. docker & docker-compose
 
